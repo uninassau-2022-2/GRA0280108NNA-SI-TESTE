@@ -1,0 +1,280 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a example NodeJS API project to MV Health",
+    "version": "1.0.0",
+    "title": "Patient API",
+    "contact": {
+      "name": "Helder Henderson França Ferreira",
+      "email": "helderhenderson143@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "schemes": ["http"],
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "description": "Patient",
+  "paths": {
+    "/patients": {
+      "get": {
+        "summary": "Get all patient",
+        "description": "Get all patient",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Patient"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new patient",
+        "description": "Create new patient",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Patient",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patient": {
+                  "type": "object",
+                  "$ref": "#/definitions/PatientDTO"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/patients/{id}": {
+      "get": {
+        "summary": "Get patient by id",
+        "description": "Get patient by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id that needs to be getted",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Patient"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete patient by id",
+        "description": "Delete patient by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id that needs to be deleted",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The patient was deleted successfully"
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update the patient by Id",
+        "description": "Update the patient by Id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id that needs to be updated",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Patient object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patient": {
+                  "type": "object",
+                  "$ref": "#/definitions/PatientDTO"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid properties",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/swagger.json": {
+      "get": {
+        "tags": {
+          "": "Swagger - Docs"
+        },
+        "summary": "Get swagger docs in .json",
+        "description": "Get swagger docs in .json",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "link": "https://swagger.io/specification/#server-object"
+          },
+          "404": {
+            "description": "Document Not Found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PatientDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "healthInsuranceCardId": {
+          "type": "number",
+          "required": true
+        },
+        "address": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "Patient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "healthInsuranceCardId": {
+          "type": "number"
+        },
+        "address": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "SuccessResponse": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "InvalidResponse": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
