@@ -1,0 +1,177 @@
+[
+  {
+    "name": "BookMatch",
+    "v": 1,
+    "requests": [
+      {
+        "headers": [],
+        "preRequestScript": "",
+        "v": "1",
+        "auth": {
+          "authType": "none",
+          "addTo": "Headers",
+          "value": "",
+          "key": "",
+          "authActive": true
+        },
+        "testScript": "",
+        "method": "GET",
+        "endpoint": "http://localhost:3333/books",
+        "params": [],
+        "body": {
+          "contentType": null,
+          "body": null
+        },
+        "name": "List Books"
+      },
+      {
+        "v": "1",
+        "endpoint": "http://localhost:3333/users",
+        "name": "Create User",
+        "params": [],
+        "headers": [],
+        "method": "POST",
+        "auth": {
+          "addTo": "Headers",
+          "value": "",
+          "key": "",
+          "authActive": true,
+          "authType": "none"
+        },
+        "preRequestScript": "",
+        "testScript": "",
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"name\": \"Vitor Gabriel\",\n  \"email\": \"vitor@gmail.com\",\n  \"password\": \"123\",\n  \"confirmation\": \"123\"\n}"
+        }
+      },
+      {
+        "v": "1",
+        "endpoint": "http://localhost:3333/users/1/lists?isCustom=false",
+        "name": "List Default Lists",
+        "params": [],
+        "headers": [],
+        "method": "GET",
+        "auth": {
+          "authActive": true,
+          "addTo": "Headers",
+          "authType": "none",
+          "key": "",
+          "value": ""
+        },
+        "preRequestScript": "",
+        "testScript": "",
+        "body": {
+          "contentType": null,
+          "body": null
+        }
+      },
+      {
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"title\": \"My top 10\",\n  \"description\": \"Os dez livros que mais gostei no ano de 2022\",\n  \"isCustom\": true\n}"
+        },
+        "name": "Create List",
+        "params": [],
+        "method": "POST",
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "v": "1",
+        "auth": {
+          "value": "",
+          "authActive": true,
+          "key": "",
+          "authType": "none",
+          "addTo": "Headers"
+        },
+        "endpoint": "http://localhost:3333/users/1/lists"
+      },
+      {
+        "method": "GET",
+        "testScript": "",
+        "preRequestScript": "",
+        "endpoint": "http://localhost:3333/users/1/lists?isCustom=true",
+        "body": {
+          "contentType": null,
+          "body": null
+        },
+        "params": [],
+        "headers": [],
+        "v": "1",
+        "auth": {
+          "addTo": "Headers",
+          "value": "",
+          "authType": "none",
+          "authActive": true,
+          "key": ""
+        },
+        "name": "List Custom Lists"
+      },
+      {
+        "v": "1",
+        "endpoint": "http://localhost:3333/lists/5",
+        "name": "Update List",
+        "params": [],
+        "headers": [],
+        "method": "PUT",
+        "auth": {
+          "addTo": "Headers",
+          "key": "",
+          "authType": "none",
+          "value": "",
+          "authActive": true
+        },
+        "preRequestScript": "",
+        "testScript": "",
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"title\": \"My top 5\",\n  \"description\": \"The 5 best books i read in 2022\"\n}"
+        }
+      },
+      {
+        "v": "1",
+        "endpoint": "http://localhost:3333/lists/5",
+        "name": "Delete List",
+        "params": [],
+        "headers": [],
+        "method": "DELETE",
+        "auth": {
+          "addTo": "Headers",
+          "authActive": true,
+          "key": "",
+          "value": "",
+          "authType": "none"
+        },
+        "preRequestScript": "",
+        "testScript": "",
+        "body": {
+          "body": null,
+          "contentType": null
+        }
+      },
+      {
+        "v": "1",
+        "endpoint": "http://localhost:3333/login",
+        "name": "Login",
+        "params": [],
+        "headers": [],
+        "method": "POST",
+        "auth": {
+          "addTo": "Headers",
+          "value": "",
+          "key": "",
+          "authActive": true,
+          "authType": "none"
+        },
+        "preRequestScript": "",
+        "testScript": "",
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"email\": \"vitor@gmail.com\",\n  \"password\": \"123\"\n}"
+        }
+      }
+    ],
+    "folders": []
+  }
+]
