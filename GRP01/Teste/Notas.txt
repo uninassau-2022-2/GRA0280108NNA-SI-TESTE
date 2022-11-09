@@ -1,0 +1,1 @@
+Verifique o conteúdo dos casos de uso, devem referir-se ao nosso projeto do totem ou se for outro projeto, como locadora de filmes, deixe isso bem especificado.
